@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  /* --- Брендовая палитра НИЦ СПб ЭТУ --- */
+  --color-brand: #185adb; /* Base blue */
+  --color-navy: #0b1a4d; /* Dark blue */
+  --color-navy-600: #0036a3; /* Dark blue (светлая граница диапазона) */
+  --color-azure: #3fa9f5; /* Bright blue */
+  --color-mist: #e5eeff; /* Light blue */
+  --color-paper: #f3f8ff; /* White blue */
+  --color-gold: #ffa803; /* Yellow */
+  --color-gold-400: #fdb913; /* Yellow (светлая граница диапазона) */
+
+  /* --- Нейтральные / служебные --- */
+  --color-ink: #0b1a3d; /* Текст основной */
+  --color-dim: #5b6b8c; /* Текст вторичный */
+  --color-alert: #e4572e; /* Предупреждение — только блок «Проблема» */
+
+  /* --- Пастельные подложки под иконки инструментов --- */
+  --color-pastel-rose: #ffe4ee;
+  --color-pastel-sky: #dcefff;
+  --color-pastel-sun: #fff0d1;
+  --color-pastel-lilac: #ece4ff;
+  --color-pastel-mint: #d9f4ec;
+
+  --font-sans: "Exo 2", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 10px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+  }
+}
+
+@layer utilities {
+  /* Надзаголовок / оверлайн: капс, мелкий кегль, увеличенный трекинг */
+  .overline {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* Заголовки: near-caps, плотный трекинг, высокий вес */
+  .display {
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Вращение узлов-точек по орбитальным линиям */
+  @keyframes orbit-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .orbit-cw {
+    animation: orbit-spin 18s linear infinite;
+    will-change: transform;
+  }
+
+  .orbit-ccw {
+    animation: orbit-spin 18s linear infinite reverse;
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-cw,
+  .orbit-ccw {
+    animation: none;
+  }
+}
